@@ -1,18 +1,26 @@
-## Getting Started
+# CRUD JDBC - Projeto Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto tem como objetivo implementar operações CRUD (Create, Read, Update, Delete) utilizando JDBC em Java.
 
-## Folder Structure
+## Requisitos
 
-The workspace contains two folders by default, where:
+- Criar uma tabela chamada `Categorias` com os campos: `id`, `nome`, `ativo`.
+- Implementar a classe modelo `Categoria`.
+- Implementar a classe DAO para operações de banco de dados (CRUD) da tabela `Categorias`.
+- No arquivo `Main.java`, executar operações CRUD para as tabelas do projeto.
+- Salvar o projeto no GitHub e entregar o link do repositório.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Estrutura do Projeto
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- `src/model/Categoria.java`: Classe modelo da categoria.
+- `src/dao/CategoriaDAO.java`: Classe responsável pelas operações CRUD da tabela `Categorias`.
+- `src/Main.java`: Arquivo principal para execução dos testes CRUD.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Como executar
 
-## Dependency Management
+1. Configure o banco de dados conforme instruções do professor.
+2. Compile e execute o projeto.
+3. Realize operações CRUD conforme exemplos no `Main.java`.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+---
+Salve o projeto no GitHub e envie o link
