@@ -24,6 +24,3 @@ Este projeto tem como objetivo implementar operações CRUD (Create, Read, Updat
 1. Configure o banco de dados conforme instruções do professor.
 2. Compile e execute o projeto.
 3. Realize operações CRUD conforme exemplos no `Main.java`.
-
----
-Salve o projeto no GitHub e envie o link
