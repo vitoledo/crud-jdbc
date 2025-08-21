@@ -21,9 +21,11 @@ public class Main {
             System.out.println("2 - Listar produtos");
             System.out.println("3 - Atualizar produto");
             System.out.println("4 - Deletar produto");
-            System.out.println("5 - Sair");
-            System.out.println("6 - Inserir categoria");
-            System.out.println("7 - Listar categorias");
+            System.out.println("5 - Inserir categoria");
+            System.out.println("6 - Listar categorias");
+            System.out.println("7 - Atualizar categoria");
+            System.out.println("8 - Deletar categoria");
+            System.out.println("9 - Sair");
             System.out.print("Escolha: ");
             int opcao = sc.nextInt();
             sc.nextLine();
@@ -67,23 +69,41 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Saindo...");
-                    sc.close();
-                    return;
-
-                case 6:
                     System.out.print("Nome da categoria: ");
                     String nomeCat = sc.nextLine();
                     Categoria categoria = new Categoria(nomeCat);
                     categoriaDAO.inserir(categoria);
                     break;
 
-                case 7:
+                case 6:
                     List<Categoria> categorias = categoriaDAO.listar();
                     for (Categoria cat : categorias) {
                         System.out.println(cat.getId() + " - " + cat.getNome());
                     }
                     break;
+
+                case 7:
+                    System.out.print("ID da categoria para atualizar: ");
+                    int idCatAtualizar = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Novo nome da categoria: ");
+                    String novoNomeCat = sc.nextLine();
+                    System.out.print("Categoria ativa? (true/false): ");
+                    boolean novoAtivoCat = sc.nextBoolean();
+                    Categoria catAtualizar = new Categoria(idCatAtualizar, novoNomeCat, novoAtivoCat);
+                    categoriaDAO.atualizar(catAtualizar);
+                    break;
+
+                case 8:
+                    System.out.print("ID da categoria para deletar: ");
+                    int idCatDeletar = sc.nextInt();
+                    categoriaDAO.deletar(idCatDeletar);
+                    break;
+                    
+                case 9:
+                    System.out.println("Saindo...");
+                    sc.close();
+                    return;
 
                 default:
                     System.out.println("Opção inválida!");
