@@ -1,43 +1,43 @@
 package main.java.dao;
 
-import main.java.model.Categoria;
+import main.java.model.Produto;
 import main.Conexao;
 
 import java.sql.*;
 import java.util.*;
 
-public class CategoriaDAO {
+public class ProdutoDAO {
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void inserir(Categoria categoria) {
-        String sql = "INSERT INTO categorias (nome, ativo) VALUES (?, ?)";
+    public void inserir(Produto p) {
+        String sql = "INSERT INTO produtos (nome, preco) VALUES (?, ?)";
+
         try (Connection conn = Conexao.conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, categoria.getNome());
-            stmt.setBoolean(2, categoria.isAtivo());
+            stmt.setString(1, p.getNome());
+            stmt.setDouble(2, p.getPreco());
             stmt.executeUpdate();
-            System.out.println("Categoria inserida com sucesso!");
+            System.out.println("Produto inserido com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public List<Categoria> listar() {
-        List<Categoria> lista = new ArrayList<>();
-        String sql = "SELECT * FROM categorias";
+    public List<Produto> listar() {
+        List<Produto> lista = new ArrayList<>();
+        String sql = "SELECT * FROM produtos";
 
         try (Connection conn = Conexao.conectar();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Categoria categoria = new Categoria(
-                        rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getBoolean("ativo"));
-                lista.add(categoria);
+                Produto p = new Produto(rs.getString("nome"),
+                        rs.getDouble("preco"));
+                p.setId(rs.getInt("id"));
+                lista.add(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,17 +46,17 @@ public class CategoriaDAO {
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void atualizar(Categoria categoria) {
-        String sql = "UPDATE categorias SET nome=?, ativo=? WHERE id=?";
+    public void atualizar(Produto p) {
+        String sql = "UPDATE produtos SET nome=?, preco=? WHERE id=?";
 
         try (Connection conn = Conexao.conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, categoria.getNome());
-            stmt.setBoolean(2, categoria.isAtivo());
-            stmt.setInt(3, categoria.getId());
+            stmt.setString(1, p.getNome());
+            stmt.setDouble(2, p.getPreco());
+            stmt.setInt(3, p.getId());
             stmt.executeUpdate();
-            System.out.println("Categoria atualizada!");
+            System.out.println("Produto atualizado!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,14 +64,14 @@ public class CategoriaDAO {
 
     @SuppressWarnings("CallToPrintStackTrace")
     public void deletar(int id) {
-        String sql = "DELETE FROM categorias WHERE id=?";
+        String sql = "DELETE FROM produtos WHERE id=?";
 
         try (Connection conn = Conexao.conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Categoria deletada!");
+            System.out.println("Produto deletado!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

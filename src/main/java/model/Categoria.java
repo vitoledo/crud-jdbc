@@ -5,7 +5,8 @@ public class Categoria {
     private String nome;
     private boolean ativo;
 
-    public Categoria() {}
+    public Categoria() {
+    }
 
     public Categoria(int id, String nome, boolean ativo) {
         this.id = id;
@@ -16,6 +17,10 @@ public class Categoria {
     public Categoria(String nome, boolean ativo) {
         this.nome = nome;
         this.ativo = ativo;
+    }
+
+    public Categoria(String nome) {
+        this.nome = nome;
     }
 
     // get e set

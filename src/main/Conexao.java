@@ -5,15 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
-    private static final String URL = "jdbc:mysql://localhost:3306/minha_loja?useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "Victinho.37";
-
-    public static Connection getConnection() {
+    public static Connection conectar() {
+        Connection conexao = null;
         try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            String url = "jdbc:mysql://localhost:3306/minha_loja";
+            String usuario = "root";
+            String senha = "Victinho.37";
+
+            conexao = DriverManager.getConnection(url, usuario, senha);
+            System.out.println("Conectado ao banco de dados!");
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao conectar no banco: " + e.getMessage(), e);
+            e.printStackTrace();
         }
+        return conexao;
     }
 }
